@@ -10,16 +10,21 @@ pins = [Motor0_A, Motor0_B, Motor1_A, Motor1_B]
 
 GPIO.setmode(GPIO.BOARD)
 
-def test_forward():
-    GPIO.output(Motor0_A, GPIO.LOW)
-    GPIO.output(Motor0_B, GPIO.HIGH)
-    GPIO.output(Motor1_A, GPIO.LOW)
-    GPIO.output(Motor1_B, GPIO.HIGH)
-    time(2)
-    stop()
+def setup():
+    for pin in pins:
+        GPIO.setup(pin, OUT)
 
 def stop():
     for pin in pins:
         GPIO.output(pin, GPIO.LOW)
 
+def test_forward():
+    GPIO.output(Motor0_A, GPIO.LOW)
+    GPIO.output(Motor0_B, GPIO.HIGH)
+    GPIO.output(Motor1_A, GPIO.HIGH)
+    GPIO.output(Motor1_B, GPIO.LOW)
+    time(2)
+
+setup()
 test_forward()
+stop()
