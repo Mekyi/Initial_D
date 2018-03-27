@@ -28,4 +28,26 @@ while True:
 
         if data == '':
             break
-        elif data == 'forward'
+        elif data == 'forward':
+            motor.forward()
+            print('forward')
+        elif data == 'backward':
+            motor.backward()
+            print('backward')
+        elif data == 'stop':
+            motor.stop()
+            print('stop')
+        elif data == 'left':
+            direction.turn_left()
+            print('left')
+        elif data == 'right':
+            direction.turn_right()
+            print('right')
+        elif data == 'home':
+            direction.home()
+            print('home')
+
+        else:
+            print('Cannot recognize')
+
+serverSocket.close
