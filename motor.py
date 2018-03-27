@@ -27,13 +27,20 @@ def stop():
     for pin in pins:
         GPIO.output(pin, GPIO.LOW)
 
-def test_forward():
+def forward():
     GPIO.output(Motor0_A, GPIO.LOW)
     GPIO.output(Motor0_B, GPIO.HIGH)
     GPIO.output(Motor1_A, GPIO.HIGH)
     GPIO.output(Motor1_B, GPIO.LOW)
-    time.sleep(2)
 
-setup()
-test_forward()
-stop()
+def backward():
+    GPIO.output(Motor0_A, GPIO.HIGH)
+    GPIO.output(Motor0_B, GPIO.LOW)
+    GPIO.output(Motor1_A, GPIO.LOW)
+    GPIO.output(Motor1_B, GPIO.HIGH)
+
+
+if __name__ == '__main__':
+    setup()
+    test_forward()
+    stop()

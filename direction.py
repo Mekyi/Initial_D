@@ -11,7 +11,7 @@ def setup():
 	leftPWM = 400
 	homePWM = 450
 	rightPWM = 500
-	offset =0
+	offset = 0
 	try:
 		for line in open(CONFIG_PATH):
 			if line[0:8] == 'offset =':
@@ -23,24 +23,13 @@ def setup():
 	rightPWM += offset
 	pwm = servo.init()         # Initialize the servo controller.
 
-# ==========================================================================================
-# Control the servo connected to channel 0 of the servo control board, so as to make the
-# car turn left.
-# ==========================================================================================
 def turn_left():
 	global leftPWM
 	pwm.setPWM(0, 0, leftPWM)  # CH0
 
-# ==========================================================================================
-# Make the car turn right.
-# ==========================================================================================
 def turn_right():
 	global rightPWM
 	pwm.setPWM(0, 0, rightPWM)
-
-# ==========================================================================================
-# Make the car turn back.
-# ==========================================================================================
 
 def turn(angle):
 	angle = Map(angle, 0, 255, leftPWM, rightPWM)
@@ -66,4 +55,3 @@ if __name__ == '__main__':
 	setup()
     test()
 	home()
-
