@@ -3,7 +3,7 @@ import motor
 import direction
 from socket import *
 
-TCP_IP = '10.0.0.184'
+TCP_IP = ''  # 10.0.0.184
 TCP_PORT = 21567
 BUFFER = 1024
 
@@ -24,7 +24,7 @@ while True:
 
     while True:
         data = ''
-        data = clientSocket.recv(1024)
+        data = clientSocket.recv(1024).decode()
 
         if data == '':
             break
@@ -48,6 +48,6 @@ while True:
             print('home')
 
         else:
-            print('Cannot recognize')
+            print('Cannot recognize' + data)
 
 serverSocket.close

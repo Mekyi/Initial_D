@@ -1,16 +1,10 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-from Tkinter import *
-from socket import *      # Import necessary modules
+from socket import *
 
 ctrl_cmd = ['forward', 'backward', 'left', 'right', 'stop', 'home']
 
-top = Tk()   # Create a top window
-top.title('Sunfounder Raspberry Pi Smart Video Car')
-
-HOST = '192.168.0.147'    # Server(Raspberry Pi) IP address
+HOST = '10.0.0.184'
 PORT = 21567
-BUFSIZ = 1024             # buffer size
+BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
 tcpCliSock = socket(AF_INET, SOCK_STREAM)   # Create a socket
