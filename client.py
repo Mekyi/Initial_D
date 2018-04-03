@@ -3,7 +3,7 @@ from socket import *
 
 ctrl_cmd = ['forward', 'backward', 'left', 'right', 'stop', 'home']
 
-HOST = '192.168.1.2'
+HOST = '192.168.1.6'
 PORT = 21567
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
@@ -84,7 +84,7 @@ pygame.joystick.init()
 
 # Initialize server connection
 tcpCliSock = socket(AF_INET, SOCK_STREAM)   # Create a socket
-#tcpCliSock.connect(ADDR)                    # Connect with the server
+tcpCliSock.connect(ADDR)                    # Connect with the server
 
 # Get ready to print
 textPrint = TextPrint()

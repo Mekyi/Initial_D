@@ -44,6 +44,13 @@ def backward():
     GPIO.output(Motor1_A, GPIO.LOW)
     GPIO.output(Motor1_B, GPIO.HIGH)
 
+def test_forward():
+    GPIO.output(Motor0_A, GPIO.LOW)
+    GPIO.output(Motor0_B, GPIO.HIGH)
+    GPIO.output(Motor1_A, GPIO.HIGH)
+    GPIO.output(Motor1_B, GPIO.LOW)
+    time.sleep(2)
+    stop()
 
 if __name__ == '__main__':
     setup()
