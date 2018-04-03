@@ -14,6 +14,8 @@ serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind(ADDRESS)
 serverSocket.listen(3)
 
+GPIO.setmode(GPIO.BOARD)
+
 direction.setup()
 motor.setup()
 direction.home()
