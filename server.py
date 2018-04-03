@@ -6,11 +6,12 @@ from socket import *
 TCP_IP = ''  # 10.0.0.184
 TCP_PORT = 21567
 BUFFER = 1024
+ADDRESS = (TCP_IP, TCP_PORT)
 
 commands = ['forward', 'backward', 'stop', 'left', 'right', 'home']
 
 serverSocket = socket(AF_INET, SOCK_STREAM)
-serverSocket.bind(TCP_IP, TCP_PORT)
+serverSocket.bind(ADDRESS)
 serverSocket.listen(3)
 
 direction.setup()
