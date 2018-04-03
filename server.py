@@ -26,31 +26,27 @@ while True:
     print('Client connected from', address)
 
     while True:
-        data = ''
+        data = 'stop'
         data = clientSocket.recv(1024).decode()
 
         if data == '':
             break
         elif data == 'forward':
             motor.forward()
-            print('forward')
         elif data == 'backward':
             motor.backward()
-            print('backward')
         elif data == 'stop':
             motor.stop()
-            print('stop')
         elif data == 'left':
             direction.turn_left()
-            print('left')
         elif data == 'right':
             direction.turn_right()
-            print('right')
         elif data == 'home':
             direction.home()
             print('home')
 
         else:
             print('Cannot recognize' + data)
+        print(data)
 
 serverSocket.close
