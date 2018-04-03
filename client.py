@@ -62,7 +62,7 @@ def home():
 
 def quit():
 	top.quit()
-	tcpCliSock.send('stop')
+	tcpCliSock.send('quit')
 	tcpCliSock.close()
 
 pygame.init()
@@ -156,6 +156,8 @@ while done == False:
                 forward()
             elif (hat == '(0, -1'):
                 backward()
+            elif (hat == '(0, 0)'):
+                stop()
         textPrint.unindent()
 
         textPrint.unindent()
