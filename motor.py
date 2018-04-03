@@ -7,9 +7,12 @@ Motor0_B = 12  # pin12
 Motor1_A = 13  # pin13
 Motor1_B = 15  # pin15
 
+EN_M0    = 4  # servo driver IC CH4
+EN_M1    = 5  # servo driver IC CH5
+
 pins = [Motor0_A, Motor0_B, Motor1_A, Motor1_B]
 
-p = pwm.init()
+#p = pwm.init()
 
 GPIO.setmode(GPIO.BOARD)
 

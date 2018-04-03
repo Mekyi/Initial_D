@@ -52,6 +52,6 @@ def test():
 	home()
 
 if __name__ == '__main__':
-	setup()
+    setup()
     test()
-	home()
+    home()
