@@ -9,11 +9,13 @@ Motor1_B = 15  # pin15
 
 pins = [Motor0_A, Motor0_B, Motor1_A, Motor1_B]
 
+p = pwm.init()
+
 GPIO.setmode(GPIO.BOARD)
 
 def setup():
     for pin in pins:
-        GPIO.setup(pin, OUT)
+        GPIO.setup(pin, GPIO.OUT)
         setSpeed(50)
 
 def setSpeed(speed):
