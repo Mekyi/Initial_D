@@ -4,7 +4,7 @@ from pygame.locals import *
 
 ctrl_cmd = ['forward', 'backward', 'left', 'right', 'stop', 'home']
 
-HOST = '192.168.1.5'  # 10.0.0.184
+HOST = '10.0.0.184'  # 10.0.0.184
 PORT = 21567
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
