@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Sunfounder_PWM_Servo_Driver"
   ],
   "SelectedNode": "\\client.py",
   "PreviewInSolutionExplorer": false
