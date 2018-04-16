@@ -122,10 +122,10 @@ def tausta(x,y):
 
 pygame.init()
 
-#playMusic()
+playMusic()
 
 # Screen size
-size = [1200, 676]
+size = [900, 507]
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Project: Initial D")
@@ -225,33 +225,38 @@ while done == False:
         hats = joystick.get_numhats()
         textPrint.print(screen, "Number of hats: {}".format(hats))
         textPrint.indent()
+        textPrint.print(screen, "")
+        textPrint.print(screen, "Now playing: Runnin in the 90s")
 
         #Draw direction sprites
-        nuoliyp(200,350)
-        nuoliap(200,450)
-        nuolivp(150,400)
-        nuoliop(250,400)
+        nuoliyp(200,300)
+        nuoliap(200,400)
+        nuolivp(150,350)
+        nuoliop(250,350)
 
         for i in range(hats):
             hat = str(joystick.get_hat(i))
             textPrint.print(screen, "Hat {} value: {}".format(i, hat))
             if (hat == '(0, 1)'):
-                nuoliyy(200,350)
+                nuoliyy(200,300)
                 forward()
             elif (hat == '(0, -1)'):
-                nuoliay(200,450)
+                nuoliay(200,400)
                 backward()
             elif (hat == '(0, 0)'):
                 stop()
             elif (hat == '(-1, 0)'):
-                nuolivy(150,400)
+                nuolivy(150,350)
                 left()
             elif (hat == '(1, 0)'):
-                nuolioy(250,400)
+                nuolioy(250,350)
                 right()
         textPrint.unindent()
-
         textPrint.unindent()
+        textPrint.unindent()
+
+        textPrint.print(screen, "")
+        textPrint.print(screen, "Now playing: Gas Gas Gas")
 
     # ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
 
