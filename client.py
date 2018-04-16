@@ -2,15 +2,13 @@ import pygame
 from socket import *
 from pygame.locals import *
 
-ctrl_cmd = ['forward', 'backward', 'left', 'right', 'stop', 'home']
-
 HOST = '10.0.0.184'  # 10.0.0.184
 PORT = 21567
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
 # Define some colors
-BLACK = (0,   0,   0)
+FONT_COLOR = (255,   0,   0)
 WHITE = (255, 255, 255)
 
 # This is a simple class that will help us print to the screen
@@ -22,7 +20,7 @@ class TextPrint:
         self.font = pygame.font.Font(None, 20)
 
     def print(self, screen, textString):
-        textBitmap = self.font.render(textString, True, BLACK)
+        textBitmap = self.font.render(textString, True, FONT_COLOR)
         screen.blit(textBitmap, [self.x, self.y])
         self.y += self.line_height
 
@@ -36,6 +34,18 @@ class TextPrint:
 
     def unindent(self):
         self.x -= 10
+
+class Background(pygame.sprite.Sprite):
+    def __init__(self, image_file, location):
+        pygame.sprite.Sprite.__init__(self)  #call Sprite initializer
+        self.image = pygame.image.load(image_file)
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
+
+def playMusic():
+    pygame.mixer.init()
+    pygame.mixer.music.load('sound/Gas gas gas.mp3')
+    pygame.mixer.music.play(-1)
 
 def forward():
 	print ('forward')
@@ -66,16 +76,74 @@ def quit():
 	tcpCliSock.send('quit')
 	tcpCliSock.close()
 
+def keyboardInput():
+    if event.type == KEYDOWN:
+        if event.key in (K_UP, K_w):
+            forward()
+        elif event.key in (K_DOWN, K_s):
+            backward()
+        elif event.key in (K_LEFT, K_a):
+            left()
+        elif event.key in (K_RIGHT, K_d):
+            right()
+    elif event.type == KEYUP:
+        if event.key in (K_LEFT, K_a) or event.key in (K_RIGHT, K_d):
+            home()
+        elif event.key in (K_UP, K_w) or event.key in (K_DOWN, K_s):
+            stop()
+
+# Sprites
+def nuoliyy(x,y):
+    screen.blit(yynuoli, (x,y))
+
+def nuoliay(x,y):
+    screen.blit(aynuoli, (x,y))
+
+def nuolivy(x,y):
+    screen.blit(vynuoli, (x,y))
+
+def nuolioy(x,y):
+    screen.blit(oynuoli, (x,y))
+
+def nuoliyp(x,y):
+    screen.blit(ypnuoli, (x,y))
+
+def nuoliap(x,y):
+    screen.blit(apnuoli, (x,y))
+
+def nuolivp(x,y):
+    screen.blit(vpnuoli, (x,y))
+
+def nuoliop(x,y):
+    screen.blit(opnuoli, (x,y))
+
+def tausta(x,y):
+    screen.blit(tausta, (x,y))
+
 pygame.init()
 
-# Set the width and height of the screen [width,height]
-size = [500, 700]
+#playMusic()
+
+# Screen size
+size = [1200, 676]
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Project: Initial D")
 
 #Loop until the user clicks the close button.
 done = False
+
+# Initialize images
+yynuoli = pygame.image.load('images/nuoli_y_y.png')
+aynuoli = pygame.image.load('images/nuoli_a_y.png')
+vynuoli = pygame.image.load('images/nuoli_v_y.png')
+oynuoli = pygame.image.load('images/nuoli_o_y.png')
+ypnuoli = pygame.image.load('images/nuoli_y_p.png')
+apnuoli = pygame.image.load('images/nuoli_a_p.png')
+vpnuoli = pygame.image.load('images/nuoli_v_p.png')
+opnuoli = pygame.image.load('images/nuoli_o_p.png')
+tausta = pygame.image.load('images/Initial_D.png')
+BackGround = Background('images/Initial_D.png', [0,0])
 
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
@@ -104,25 +172,13 @@ while done == False:
             print("Joystick button released.")
 
         # Keyboard input
-        elif event.type == KEYDOWN:
-            if event.key in (K_UP, K_w):
-                forward()
-            elif event.key in (K_DOWN, K_s):
-                backward()
-            elif event.key in (K_LEFT, K_a):
-                left()
-            elif event.key in (K_RIGHT, K_d):
-                right()
-        elif event.type == KEYUP:
-            if event.key in (K_LEFT, K_a) or event.key in (K_RIGHT, K_d):
-                home()
-            elif event.key in (K_UP, K_w) or event.key in (K_DOWN, K_s):
-                stop()
+        #keyboardInput()
 
     # DRAWING STEP
     # First, clear the screen to white.  Don't put other drawing commands
     # above this, or they will be erased with this command.
-    screen.fill(WHITE)
+    screen.fill([255,255,255])
+    screen.blit(BackGround.image, BackGround.rect)
     textPrint.reset()
 
     # Get count of joysticks
@@ -170,26 +226,35 @@ while done == False:
         textPrint.print(screen, "Number of hats: {}".format(hats))
         textPrint.indent()
 
+        #Draw direction sprites
+        nuoliyp(200,350)
+        nuoliap(200,450)
+        nuolivp(150,400)
+        nuoliop(250,400)
+
         for i in range(hats):
             hat = str(joystick.get_hat(i))
             textPrint.print(screen, "Hat {} value: {}".format(i, hat))
-            #if (hat == '(0, 1)'):
-            #    forward()
-            #elif (hat == '(0, -1)'):
-            #    backward()
-            #elif (hat == '(0, 0)'):
-            #    stop()
-            #elif (hat == '(-1, 0)'):
-            #    left()
-            #elif (hat == '(1, 0)'):
-            #    right()
+            if (hat == '(0, 1)'):
+                nuoliyy(200,350)
+                forward()
+            elif (hat == '(0, -1)'):
+                nuoliay(200,450)
+                backward()
+            elif (hat == '(0, 0)'):
+                stop()
+            elif (hat == '(-1, 0)'):
+                nuolivy(150,400)
+                left()
+            elif (hat == '(1, 0)'):
+                nuolioy(250,400)
+                right()
         textPrint.unindent()
 
         textPrint.unindent()
 
     # ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
 
-    # Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
     # Limit to 20 frames per second
